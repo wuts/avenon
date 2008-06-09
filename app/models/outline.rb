@@ -8,14 +8,13 @@ class Outline < ActiveRecord::Base
   end
 
   private
-  def parser_tree(element,parent_id)
+  def parser_tree(element)
     if(element.has_elements?)
       element.elements.each do |subelement|
-        parent_planner=Planner.find_by_name(element.text) if element.has_text?
-        parser_tree(subelement,parent_planner.id)
+        parser_tree(subelement)
     end
     else
-       Planner.create(:name=>element.text,:parent_id=>parent_id) if element.has_text?
+       Planner.create(:name=>element.text) if element.has_text?
     end
   end
 
@@ -27,7 +26,7 @@ class Outline < ActiveRecord::Base
     root=REXML::XPath.first(xml,"//ol")
 
     root.elements.each do |element|
-      parser_tree(element,0)
+      parser_tree(element)
     end
   end
 end
