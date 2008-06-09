@@ -38,7 +38,7 @@ Ext.tree.ColumnTree = Ext.extend(Ext.tree.TreePanel, {
     }
 });
 
-Ext.tree.ColumnNodeUI = Ext.extend(Ext.tree.TreeCheckNodeUI, {
+Ext.tree.ColumnNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
     focus: Ext.emptyFn, // prevent odd scrolling behavior
 
     renderElements : function(n, a, targetNode, bulkRender){
