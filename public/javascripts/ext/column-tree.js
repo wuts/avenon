@@ -17,15 +17,15 @@ Ext.onReady(function(){
 
         columns:[{
             header:'Plan',
-            width:350,
+            width:450,
             dataIndex:'plan'
         },{
             header:'Score',
-            width:100,
+            width:200,
             dataIndex:'score'
         },{
             header:'Award',
-            width:100,
+            width:200,
             dataIndex:'award'
         }],
 
@@ -39,7 +39,7 @@ Ext.onReady(function(){
         }),
 
         root: new Ext.tree.AsyncTreeNode({
-            text:'Tasks'
+            text:'Planns'
         })
     });
     tree.render();
