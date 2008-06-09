@@ -1,0 +1,38 @@
+<p>
+  <b>Name:</b>
+  <%=h @planner.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @planner.description %>
+</p>
+
+<p>
+  <b>Start:</b>
+  <%=h @planner.start %>
+</p>
+
+<p>
+  <b>End:</b>
+  <%=h @planner.end %>
+</p>
+
+<p>
+  <b>Parent:</b>
+  <%=h @planner.parent_id %>
+</p>
+
+<p>
+  <b>Score:</b>
+  <%=h @planner.score %>
+</p>
+
+<p>
+  <b>Award:</b>
+  <%=h @planner.award %>
+</p>
+
+
+<%= link_to 'Edit', edit_planner_path(@planner) %> |
+<%= link_to 'Back', planners_path %>

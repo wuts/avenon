@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  description: MyText
+  start: 2008-06-06 18:38:26
+  end: 2008-06-06 18:38:26
+  parent_id: 1
+  score: 9.99
+  award: 9.99
+
+two:
+  name: MyString
+  description: MyText
+  start: 2008-06-06 18:38:26
+  end: 2008-06-06 18:38:26
+  parent_id: 1
+  score: 9.99
+  award: 9.99

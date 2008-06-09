@@ -1,0 +1,85 @@
+class OutlinesController < ApplicationController
+  # GET /outlines
+  # GET /outlines.xml
+  def index
+    @outlines = Outline.find(:all)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @outlines }
+    end
+  end
+
+  # GET /outlines/1
+  # GET /outlines/1.xml
+  def show
+    @outline = Outline.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @outline }
+    end
+  end
+
+  # GET /outlines/new
+  # GET /outlines/new.xml
+  def new
+    @outline = Outline.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @outline }
+    end
+  end
+
+  # GET /outlines/1/edit
+  def edit
+    @outline = Outline.find(params[:id])
+  end
+
+  # POST /outlines
+  # POST /outlines.xml
+  def create
+    @outline = Outline.new(params[:outline])
+
+    respond_to do |format|
+      if @outline.save
+        flash[:notice] = 'Outline was successfully created.'
+        format.html { redirect_to(@outline) }
+        format.xml  { render :xml => @outline, :status => :created, :location => @outline }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @outline.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /outlines/1
+  # PUT /outlines/1.xml
+  def update
+    @outline = Outline.find(params[:id])
+
+    respond_to do |format|
+      if @outline.update_attributes(params[:outline])
+        flash[:notice] = 'Outline was successfully updated.'
+        format.html { redirect_to(@outline) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @outline.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /outlines/1
+  # DELETE /outlines/1.xml
+  def destroy
+    @outline = Outline.find(params[:id])
+    @outline.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(outlines_url) }
+      format.xml  { head :ok }
+    end
+  end
+end

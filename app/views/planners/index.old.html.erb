@@ -1,0 +1,32 @@
+<h1>Listing planners</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Start</th>
+    <th>End</th>
+    <th>Parent</th>
+    <th>Score</th>
+    <th>Award</th>
+  </tr>
+
+<% for planner in @planners %>
+  <tr>
+    <td><%=h planner.name %></td>
+    <td><%=h planner.description %></td>
+    <td><%=h planner.start %></td>
+    <td><%=h planner.end %></td>
+    <td><%=h planner.parent_id %></td>
+    <td><%=h planner.score %></td>
+    <td><%=h planner.award %></td>
+    <td><%= link_to 'Show', planner %></td>
+    <td><%= link_to 'Edit', edit_planner_path(planner) %></td>
+    <td><%= link_to 'Destroy', planner, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New planner', new_planner_path %>

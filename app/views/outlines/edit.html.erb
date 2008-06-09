@@ -1,0 +1,16 @@
+<h1>Editing outline</h1>
+
+<% form_for(@outline) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_area :name %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @outline %> |
+<%= link_to 'Back', outlines_path %>
