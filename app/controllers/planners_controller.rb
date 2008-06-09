@@ -2,6 +2,15 @@
 class PlannersController < ApplicationController
   # GET /planners
   # GET /planners.xml
+
+   def self.find_children(start_id = nil)
+    start_id.to_i == 0 ? root_nodes : find(start_id).direct_children
+  end
+
+  #如果parent_id为空，则为树的根节点
+  def self.root_nodes
+  end
+
   def index
     @planners = Planner.find(:all)
 
@@ -19,7 +28,7 @@ class PlannersController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @planner }
-      format.json { render :json=>Planner.find_children(params[:node]) }
+      format.json
     end
   end
 
@@ -86,12 +95,5 @@ class PlannersController < ApplicationController
     end
   end
 
-  def self.find_children(start_id = nil)
-    start_id.to_i == 0 ? root_nodes : find(start_id).direct_children
-  end
-
-  #如果parent_id为空，则为树的根节点
-  def self.root_nodes
-  end
 
 end
