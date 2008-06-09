@@ -9,7 +9,7 @@
 Ext.onReady(function(){
     var tree = new Ext.tree.ColumnTree({
         el:'tree-ct',
-        width:552,
+        width:652,
         autoHeight:true,
         rootVisible:false,
         autoScroll:true,
@@ -17,16 +17,20 @@ Ext.onReady(function(){
 
         columns:[{
             header:'Plan',
-            width:450,
+            width:350,
             dataIndex:'plan'
         },{
             header:'Score',
-            width:200,
+            width:100,
             dataIndex:'score'
         },{
             header:'Award',
-            width:200,
+            width:100,
             dataIndex:'award'
+        },{
+            header:'Check',
+            width:100,
+            dataIndex:'check'
         }],
 
         loader: new Ext.tree.TreeLoader({
