@@ -13,20 +13,20 @@ Ext.onReady(function(){
         autoHeight:true,
         rootVisible:false,
         autoScroll:true,
-        title: 'Example Tasks',
+        title: 'Example Plans',
 
         columns:[{
-            header:'Task',
+            header:'Plan',
             width:350,
-            dataIndex:'task'
+            dataIndex:'plan'
         },{
-            header:'Duration',
+            header:'Score',
             width:100,
-            dataIndex:'duration'
+            dataIndex:'score'
         },{
-            header:'Assigned To',
+            header:'Award',
             width:100,
-            dataIndex:'user'
+            dataIndex:'award'
         }],
 
         loader: new Ext.tree.TreeLoader({
