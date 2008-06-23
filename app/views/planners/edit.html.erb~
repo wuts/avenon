@@ -1,0 +1,37 @@
+<h1>Editing planner</h1>
+
+<% form_for(@planner) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :start %><br />
+    <%= f.datetime_select :start %>
+  </p>
+  <p>
+    <%= f.label :end %><br />
+    <%= f.datetime_select :end %>
+  </p>
+  <p>
+    <%= f.label :parent_id %><br />
+    <%= f.text_field :parent_id %>
+  </p>
+  <p>
+    <%= f.label :score %><br />
+    <%= f.text_field :score %>
+  </p>
+  <p>
+    <%= f.label :award %><br />
+    <%= f.text_field :award %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @planner %> |
+<%= link_to 'Back', planners_path %>

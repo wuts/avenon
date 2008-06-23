@@ -1,0 +1,39 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Customizing TreePanel</title>
+<%= javascript_include_tag "ext/adapter/ext/ext-base",
+                             "ext/ext-all",
+                             "ext/grid"%>
+    <%= stylesheet_link_tag 'ext/ext-all'%>
+    <%= stylesheet_link_tag 'ext/shared/examples'%>
+
+</head>
+<body>
+
+<h1>Grid example</h1>
+
+
+<div id="editor-grid">
+
+</div>
+
+<div id="hello-win" class="x-hidden">
+    <div class="x-window-header">Hello Dialog</div>
+    <div id="hello-tabs">
+        <!-- Auto create tab 1 -->
+        <div class="x-tab" title="Hello World 1">
+            <p>Hello...</p>
+        </div>
+        <!-- Auto create tab 2 -->
+        <div class="x-tab" title="Hello World 2">
+
+            <p>... World!</p>
+        </div>
+    </div>
+</div>
+
+
+<br /><br /><br /><br /><br />
+</body>
+</html>

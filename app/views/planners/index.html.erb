@@ -1,27 +1,20 @@
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Customizing TreePanel</title>
-<%= javascript_include_tag "ext/adapter/ext/ext-base",
-                             "ext/ext-all",
-                             "ext/TreeCheckNodeUI",
-                             "ext/ColumnNodeUI",
-                             "ext/column-tree",
-                             "ext/shared/examples"%>
-    <%= stylesheet_link_tag 'ext/ext-all'%>
-    <%= stylesheet_link_tag 'ext/column-tree'%>
-    <%= stylesheet_link_tag 'ext/shared/examples'%>
+<h1>Listing Planners</h1>
 
-</head>
-<body>
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
 
-<h1>我的锻炼计划</h1>
+<% for planner in @planners %>
+  <tr>
+    <td><%= planner.name %></td>
+    <td><%= link_to 'Show', planner %></td>
+    <td><%= link_to 'Edit', edit_planner_path(planner) %></td>
+    <td><%= link_to 'Destroy', planner, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
 
+<br />
 
-<div id="tree-ct">
-
-</div>
-
-<br /><br /><br /><br /><br />
-</body>
-</html>
+<%= link_to 'New planner', new_planner_path %>

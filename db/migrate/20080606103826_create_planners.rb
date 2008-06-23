@@ -8,6 +8,8 @@ class CreatePlanners < ActiveRecord::Migration
       t.integer :parent_id
       t.integer :lft
       t.integer :rgt
+      t.boolean :checked,:default=>0
+      t.string :uiProvider,:default=>'col'
       t.decimal :score
       t.decimal :award
 

@@ -3,16 +3,10 @@ class PlannersController < ApplicationController
   # GET /planners
   # GET /planners.xml
 
-   def self.find_children(start_id = nil)
-    start_id.to_i == 0 ? root_nodes : find(start_id).direct_children
-  end
 
-  #如果parent_id为空，则为树的根节点
-  def self.root_nodes
-  end
 
   def index
-    @planners = Planner.find(:all)
+    @planners = Planner.find(:all,:conditions=>["parent_id is NULL or parent_id=0"])
 
     respond_to do |format|
      format.html # index.html.erb
@@ -25,12 +19,30 @@ class PlannersController < ApplicationController
   def show
     @planner = Planner.find(params[:id])
 
+    node_id=params[:node]
+
+    if (node_id=='ynode-7')
+      node_id=params[:id]
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @planner }
-      format.json
-    end
+      format.json { render :json=>Planner.find_children(node_id).map{ |pl| pl.attributes}}
+     end
   end
+
+  # GET /planners/1
+  # GET /planners/1.xml
+  def view
+    @planner = Planner.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @planner }
+     end
+  end
+
 
   # GET /planners/new
   # GET /planners/new.xml
@@ -94,6 +106,7 @@ class PlannersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
 
 
 end

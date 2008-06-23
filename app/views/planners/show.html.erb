@@ -1,38 +1,34 @@
-<p>
-  <b>Name:</b>
-  <%=h @planner.name %>
-</p>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Customizing TreePanel</title>
+<%= javascript_include_tag "ext/adapter/ext/ext-base",
+                             "ext/ext-all",
+                             "ext/TreeCheckNodeUI",
+                             "ext/ColumnNodeUI",
+                             "ext/column-tree",
+                             "ext/shared/examples"%>
+    <%= stylesheet_link_tag 'ext/ext-all'%>
+    <%= stylesheet_link_tag 'ext/column-tree'%>
+    <%= stylesheet_link_tag 'ext/shared/examples'%>
 
-<p>
-  <b>Description:</b>
-  <%=h @planner.description %>
-</p>
+</head>
+<body>
 
-<p>
-  <b>Start:</b>
-  <%=h @planner.start %>
-</p>
+<h1><%= @planner.name %></h1>
 
-<p>
-  <b>End:</b>
-  <%=h @planner.end %>
-</p>
+<div id="tree-ct">
 
-<p>
-  <b>Parent:</b>
-  <%=h @planner.parent_id %>
-</p>
+</div>
 
-<p>
-  <b>Score:</b>
-  <%=h @planner.score %>
-</p>
+<div id="hello-win" class="x-hidden">
+    <div class="x-window-header">Planner Editor</div>
+    <div id="hello-tabs">
 
-<p>
-  <b>Award:</b>
-  <%=h @planner.award %>
-</p>
+    </div>
+</div>
 
 
-<%= link_to 'Edit', edit_planner_path(@planner) %> |
-<%= link_to 'Back', planners_path %>
+<br /><br /><br /><br /><br />
+</body>
+</html>

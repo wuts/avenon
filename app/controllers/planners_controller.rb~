@@ -2,6 +2,9 @@
 class PlannersController < ApplicationController
   # GET /planners
   # GET /planners.xml
+
+
+
   def index
     @planners = Planner.find(:all)
 
@@ -16,11 +19,17 @@ class PlannersController < ApplicationController
   def show
     @planner = Planner.find(params[:id])
 
+    node_id=params[:node]
+
+    if (!node_id.is_a?Numeric)
+      node_id=params[:id]
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @planner }
-      format.json { render :json=>Planner.find_children(params[:node]) }
-    end
+      format.json { render :json=>Planner.find_children(node_id).map{ |pl| pl.attributes}}
+     end
   end
 
   # GET /planners/new

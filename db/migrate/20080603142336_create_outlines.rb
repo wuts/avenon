@@ -1,7 +1,8 @@
 class CreateOutlines < ActiveRecord::Migration
   def self.up
     create_table :outlines do |t|
-      t.text :name
+      t.string :name
+      t.text :outline
 
       t.timestamps
     end

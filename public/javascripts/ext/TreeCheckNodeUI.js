@@ -60,6 +60,7 @@
 
      renderElements : function(n, a, targetNode, bulkRender){
          var tree = n.getOwnerTree();
+
          this.checkModel = tree.checkModel || this.checkModel;
          this.onlyLeafCheckable = tree.onlyLeafCheckable || false;
 

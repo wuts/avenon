@@ -1,0 +1,30 @@
+<p>
+  <b>Name:</b>
+  <%= @planner.name %>
+</p>
+<p>
+  <b>Description:</b>
+  <%= @planner.description %>
+</p>
+<p>
+  <b>Start:</b>
+  <%= @planner.start %>
+</p>
+<p>
+  <b>End:</b>
+  <%= @planner.end %>
+</p>
+
+<p>
+  <b>Score:</b>
+  <%= @planner.score %>
+</p>
+<p>
+  <b>Award:</b>
+  <%= @planner.award %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_planner_path(@planner) %> |
+<%= link_to 'Back', planners_path %>

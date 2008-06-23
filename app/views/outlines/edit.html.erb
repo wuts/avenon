@@ -5,8 +5,13 @@
 
   <p>
     <%= f.label :name %><br />
-    <%= f.text_area :name %>
+    <%= f.text_field :name %>
   </p>
+  <p>
+    <%= f.label :outline %><br />
+    <%= f.text_area :outline,:size=>"50x50" %>
+  </p>
+
   <p>
     <%= f.submit "Update" %>
   </p>

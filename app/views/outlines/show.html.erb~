@@ -1,6 +1,6 @@
 <p>
   <b>Name:</b>
-  <%=h @outline.name %>
+  <%= @outline.name %>
 </p>
 
 

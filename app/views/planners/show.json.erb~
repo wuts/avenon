@@ -1,157 +1,73 @@
 [{
-    task:'ColumnTree Example',
-    duration:'3 hours',
-    user:'',
+    planner_id:11,
+    plan:'减肥计划',
+    score:'500',
+    award:'1000',
+    checked:true,
     uiProvider:'col',
     cls:'master-task',
     iconCls:'task-folder',
     children:[{
-        task:'Abstract rendering in TreeNodeUI',
-        duration:'15 min',
-        user:'Jack Slocum',
+        planner_id:2,
+        plan:'每天去一次健身房',
+        score:'200',
+        award:'300',
+        checked:false,
         uiProvider:'col',
         leaf:true,
         iconCls:'task'
     },{
-        task:'Create TreeNodeUI with column knowledge',
-        duration:'45 min',
-        user:'Jack Slocum',
+        planner_id:3,
+        plan:'每天游一次泳',
+        score:'200',
+        award:'400',
+        checked:false,
         uiProvider:'col',
         leaf:true,
         iconCls:'task'
     },{
-        task:'Create TreePanel to render and lock headers',
-        duration:'30 min',
-        user:'Jack Slocum',
-        uiProvider:'col',
-        leaf:true,
-        iconCls:'task'
-    },{
-        task:'Add CSS to make it look fly',
-        duration:'30 min',
-        user:'Jack Slocum',
-        uiProvider:'col',
-        leaf:true,
-        iconCls:'task'
-    },{
-        task:'Test and make sure it works',
-        duration:'1 hour',
-        user:'Jack Slocum',
+        planner_id:4,
+        plan:'每天仰卧起坐100次',
+        score:'100',
+        award:'300',
+        checked:false,
         uiProvider:'col',
         leaf:true,
         iconCls:'task'
     }]
 },{
-    task:'Custom Field Example',
-    duration:'2 1/2 hours',
-    user:'',
+    planner_id:5,
+    plan:'运动计划',
+    score:'400',
+    award:'800',
+    checked:false,
     uiProvider:'col',
     cls:'master-task',
     iconCls:'task-folder',
     children:[{
-        task:'Implement "Live Search" on extjs.com from Alex',
-        duration:'1 hour',
-        user:'Jack Slocum',
+        planner_id:6,
+        plan:'每天跑步一次',
+        score:'200',
+        award:'300',
+        checked:false,
         uiProvider:'col',
         leaf:true,
         iconCls:'task'
     },{
-        task:'Extend TwinTrigger',
-        duration:'30 min',
-        user:'Jack Slocum',
+        planner_id:7,
+        plan:'每天散步一次',
+        score:'200',
+        award:'400',
+        checked:false,
         uiProvider:'col',
         leaf:true,
         iconCls:'task'
     },{
-        task:'Testing and debugging',
-        duration:'1 hour',
-        user:'Jack Slocum',
-        uiProvider:'col',
-        leaf:true,
-        iconCls:'task'
-    }]
-},{
-    task:'Foo Bar Item',
-    duration:'3 hours',
-    user:'',
-    uiProvider:'col',
-    cls:'master-task',
-    iconCls:'task-folder',
-    children:[{
-        task:'Abstract rendering in TreeNodeUI',
-        duration:'15 min',
-        user:'Jack Slocum',
-        uiProvider:'col',
-        leaf:true,
-        iconCls:'task'
-    },{
-        task:'Create TreeNodeUI with column knowledge',
-        duration:'45 min',
-        user:'Jack Slocum',
-        uiProvider:'col',
-        leaf:true,
-        iconCls:'task'
-    },{
-        task:'Create TreePanel to render and lock headers',
-        duration:'30 min',
-        user:'Jack Slocum',
-        uiProvider:'col',
-        leaf:true,
-        iconCls:'task'
-    },{
-        task:'Add CSS to make it look fly',
-        duration:'30 min',
-        user:'Jack Slocum',
-        uiProvider:'col',
-        leaf:true,
-        iconCls:'task'
-    },{
-        task:'Test and make sure it works',
-        duration:'1 hour',
-        user:'Jack Slocum',
-        uiProvider:'col',
-        leaf:true,
-        iconCls:'task'
-    }]
-},{
-    task:'WTF Item',
-    duration:'3 hours',
-    user:'',
-    uiProvider:'col',
-    cls:'master-task',
-    iconCls:'task-folder',
-    children:[{
-        task:'Abstract rendering in TreeNodeUI',
-        duration:'15 min',
-        user:'Jack Slocum',
-        uiProvider:'col',
-        leaf:true,
-        iconCls:'task'
-    },{
-        task:'Create TreeNodeUI with column knowledge',
-        duration:'45 min',
-        user:'Jack Slocum',
-        uiProvider:'col',
-        leaf:true,
-        iconCls:'task'
-    },{
-        task:'Create TreePanel to render and lock headers',
-        duration:'30 min',
-        user:'Jack Slocum',
-        uiProvider:'col',
-        leaf:true,
-        iconCls:'task'
-    },{
-        task:'Add CSS to make it look fly',
-        duration:'30 min',
-        user:'Jack Slocum',
-        uiProvider:'col',
-        leaf:true,
-        iconCls:'task'
-    },{
-        task:'Test and make sure it works',
-        duration:'1 hour',
-        user:'Jack Slocum',
+        planner_id:8,
+        plan:'每天骑车一次',
+        score:'100',
+        award:'300',
+        checked:false,
         uiProvider:'col',
         leaf:true,
         iconCls:'task'
