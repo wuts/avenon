@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/plog/!svn/ver/5156/plog/trunk/js/tinymce/plugins/table/jscripts
+END
+row.js
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/plog/!svn/ver/3746/plog/trunk/js/tinymce/plugins/table/jscripts/row.js
+END
+table.js
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/plog/!svn/ver/5156/plog/trunk/js/tinymce/plugins/table/jscripts/table.js
+END
+cell.js
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/plog/!svn/ver/3746/plog/trunk/js/tinymce/plugins/table/jscripts/cell.js
+END
+merge_cells.js
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/plog/!svn/ver/4409/plog/trunk/js/tinymce/plugins/table/jscripts/merge_cells.js
+END

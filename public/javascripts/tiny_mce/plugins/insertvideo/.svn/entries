@@ -1,0 +1,85 @@
+8
+
+dir
+6679
+http://devel.lifetype.net/svn/plog/plog/trunk/js/tinymce/plugins/insertvideo
+http://devel.lifetype.net/svn/plog
+
+
+
+2008-03-25T18:01:01.102137Z
+6271
+mark
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+cc0a4b37-03e2-0310-8504-c750951c256a
+
+editor_plugin.js
+file
+
+
+
+
+2008-06-29T01:12:21.000000Z
+e5c880a02f9e580eebfd9595d38458a5
+2007-07-19T04:32:39.078490Z
+5682
+oscar
+
+functions.js
+file
+
+
+
+
+2008-06-29T01:12:21.000000Z
+b2fd2e4ef061e5a0a70ad9d8e01b61e2
+2007-07-19T04:32:39.078490Z
+5682
+oscar
+
+langs
+dir
+
+images
+dir
+
+css
+dir
+
+videoinput.html
+file
+
+
+
+
+2008-06-29T01:12:21.000000Z
+c12865ef3a96197897f4d3a58c28de53
+2007-07-02T07:10:19.784471Z
+5600
+mark
+
+README.txt
+file
+
+
+
+
+2008-06-29T01:12:21.000000Z
+2cd2aa80d85a959c22d3bedd23a1b886
+2007-06-05T13:51:03.555147Z
+5488
+mark
+

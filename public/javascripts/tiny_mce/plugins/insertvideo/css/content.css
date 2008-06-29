@@ -1,0 +1,49 @@
+.ltVideoYouTube {
+	border: 1px dotted #cc0000;
+	background-image: url('../images/youtube.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: #ffffcc;
+}
+.ltVideoGoogleVideo {
+	border: 1px dotted #cc0000;
+	background-image: url('../images/gvideo.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: #ffffcc;
+}
+.ltVideoMetacafe {
+	border: 1px dotted #cc0000;
+	background-image: url('../images/metacafe.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: #ffffcc;
+	}
+.ltVideoIfilm {
+	border: 1px dotted #cc0000;
+	background-image: url('../images/ifilm.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: #ffffcc;
+	}
+.ltVideoGoear {
+	border: 1px dotted #cc0000;
+	background-image: url('../images/goear.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: #ffffcc;
+	}
+.ltVideoGrouper {
+	border: 1px dotted #cc0000;
+	background-image: url('../images/grouper.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: #ffffcc;
+	}
+.ltVideoDailymot {
+	border: 1px dotted #cc0000;
+	background-image: url('../images/dailymotion.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: #ffffcc;
+	}

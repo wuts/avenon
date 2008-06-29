@@ -1,0 +1,70 @@
+8
+
+dir
+6679
+http://devel.lifetype.net/svn/plog/plog/trunk/js/tinymce/plugins/insertdatetime
+http://devel.lifetype.net/svn/plog
+
+
+
+2007-03-22T13:18:28.552299Z
+5156
+oscar
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+cc0a4b37-03e2-0310-8504-c750951c256a
+
+editor_plugin.js
+file
+
+
+
+
+2008-06-29T01:11:58.000000Z
+070f3679f2db81554d514b00c4c87cd8
+2007-03-22T13:18:28.552299Z
+5156
+oscar
+
+langs
+dir
+
+images
+dir
+
+editor_plugin_src.js
+file
+
+
+
+
+2008-06-29T01:11:58.000000Z
+6e34d293c37c975f2a7cdf966c23f181
+2007-03-22T13:18:28.552299Z
+5156
+oscar
+
+readme.txt
+file
+
+
+
+
+2008-06-29T01:11:58.000000Z
+fe81b122bcf0e8599bb841cca33f967a
+2006-07-19T21:25:21.686203Z
+3746
+mark
+

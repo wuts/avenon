@@ -1,0 +1,73 @@
+8
+
+dir
+6679
+http://devel.lifetype.net/svn/plog/plog/trunk/js/tinymce/plugins/insertresource
+http://devel.lifetype.net/svn/plog
+
+
+
+2007-07-19T04:53:31.317198Z
+5683
+oscar
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+cc0a4b37-03e2-0310-8504-c750951c256a
+
+editor_plugin.js
+file
+
+
+
+
+2008-06-29T01:12:23.000000Z
+abd01bd52ecfbff17a899c212b984d20
+2007-07-19T04:53:31.317198Z
+5683
+oscar
+
+langs
+dir
+
+images
+dir
+
+css
+dir
+
+popup.htm
+file
+
+
+
+
+2008-06-29T01:12:23.000000Z
+0903356145e7467f4c5407b3d497f46e
+2006-07-19T21:25:21.686203Z
+3746
+mark
+
+readme.txt
+file
+
+
+
+
+2008-06-29T01:12:23.000000Z
+796f7ff3edf444df1e616bf1021e604d
+2006-07-19T21:25:21.686203Z
+3746
+mark
+

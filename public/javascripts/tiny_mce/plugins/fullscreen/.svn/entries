@@ -1,0 +1,85 @@
+8
+
+dir
+6679
+http://devel.lifetype.net/svn/plog/plog/trunk/js/tinymce/plugins/fullscreen
+http://devel.lifetype.net/svn/plog
+
+
+
+2008-03-25T18:01:01.102137Z
+6271
+mark
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+cc0a4b37-03e2-0310-8504-c750951c256a
+
+editor_plugin.js
+file
+
+
+
+
+2008-06-29T01:12:00.000000Z
+23993071d70dee0ca8351f33575c9642
+2007-03-22T13:18:28.552299Z
+5156
+oscar
+
+langs
+dir
+
+images
+dir
+
+editor_plugin_src.js
+file
+
+
+
+
+2008-06-29T01:12:00.000000Z
+1ccf5b4b80b3857ae7e1cac837f34cf0
+2007-03-22T13:18:28.552299Z
+5156
+oscar
+
+css
+dir
+
+fullscreen.htm
+file
+
+
+
+
+2008-06-29T01:12:00.000000Z
+47afdaeb0e27d1bc4ec98488bad44d1c
+2008-03-25T18:01:01.102137Z
+6271
+mark
+
+readme.txt
+file
+
+
+
+
+2008-06-29T01:12:00.000000Z
+fe81b122bcf0e8599bb841cca33f967a
+2006-07-19T21:25:21.686203Z
+3746
+mark
+

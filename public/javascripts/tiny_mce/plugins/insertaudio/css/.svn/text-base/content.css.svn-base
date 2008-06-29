@@ -1,0 +1,7 @@
+.ltFlashPlayer {
+	background-image: url('../images/player.png');	
+	border: 1px dotted #cc0000;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: #ffffcc;
+}

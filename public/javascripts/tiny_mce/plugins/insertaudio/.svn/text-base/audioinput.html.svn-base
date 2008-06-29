@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{$lang_insertaudio_desc}</title>
+	<script language="javascript" type="text/javascript" src="../../tiny_mce_popup.js"></script>
+	<script language="javascript" type="text/javascript" src="functions.js"></script>	
+	<base target="_self" />
+</head>
+<body style="display: none">
+	<form name="audio" id="audio" method="post" action="#">
+	<div class="tabs">
+	  <ul>
+	   <li id="general_tab" class="current"><span>{$lang_insertaudio_desc}</span></li>
+	  </ul>
+	</div>
+	<div class="panel_wrapper">
+	  <div id="general_panel" class="panel_current">
+	     <legend>{$lang_insertaudio_panellegend}</legend>	     	     
+	     <table border="0" cellpadding="4" cellspacing="0">
+	      <tr>
+	       <td nowrap="nowrap">{$lang_insertaudio_url}</td>
+	       <td><input type="text" id="url" name="url" value="" {$lang_insertaudio_inputurlstyle} /></td>
+	      </tr>		
+		 </table>		    
+		</div>
+		</div>
+		<div class="mceActionPanel">
+		  <div style="float:left">		
+			<input type="button" name="insert" value="{$lang_insert}" onClick="insertAudioCode()" id="insert" />
+		  </div>
+		  <div style="float:right">
+		    <input type="button" name="cancel" value="{$lang_close}" onclick="tinyMCEPopup.close();" id="cancel" />
+		  </div>
+		</div>
+	 </div>
+	</div>				
+	 </form>
+</body>
+</html>

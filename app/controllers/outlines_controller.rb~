@@ -60,7 +60,8 @@ class OutlinesController < ApplicationController
     respond_to do |format|
       if @outline.save
         flash[:notice] = 'Outline was successfully created.'
-        format.html { redirect_to(planners_url) }
+        @planner=Planner.find_by_name(@outline.name)
+        format.html { redirect_to(@planner) }
         format.xml  { render :xml => @outline, :status => :created, :location => @outline }
       else
         format.html { render :action => "new" }

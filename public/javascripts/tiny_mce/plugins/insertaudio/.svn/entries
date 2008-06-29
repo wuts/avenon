@@ -1,0 +1,73 @@
+8
+
+dir
+6679
+http://devel.lifetype.net/svn/plog/plog/trunk/js/tinymce/plugins/insertaudio
+http://devel.lifetype.net/svn/plog
+
+
+
+2007-07-02T07:10:19.784471Z
+5600
+mark
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+cc0a4b37-03e2-0310-8504-c750951c256a
+
+editor_plugin.js
+file
+
+
+
+
+2008-06-29T01:12:11.000000Z
+593c54a71587aea82d8a716253acc592
+2007-07-02T07:10:19.784471Z
+5600
+mark
+
+functions.js
+file
+
+
+
+
+2008-06-29T01:12:11.000000Z
+c3d1b3fe5566833f4a42e2b2dba1fdb6
+2007-06-05T13:51:03.555147Z
+5488
+mark
+
+langs
+dir
+
+audioinput.html
+file
+
+
+
+
+2008-06-29T01:12:11.000000Z
+ee5cf8017d1a02cae6654b62b6d63417
+2007-07-02T07:10:19.784471Z
+5600
+mark
+
+images
+dir
+
+css
+dir
+

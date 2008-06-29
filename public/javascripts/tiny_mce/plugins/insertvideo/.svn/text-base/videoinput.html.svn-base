@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{$lang_insertvideo_desc}</title>
+	<script language="javascript" type="text/javascript" src="../../tiny_mce_popup.js"></script>
+	<script language="javascript" type="text/javascript" src="functions.js"></script>	
+	<base target="_self" />
+</head>
+<body style="display: none">
+	<form name="video" id="video" method="post" action="#">
+	<div class="tabs">
+	  <ul>
+	   <li id="general_tab" class="current"><span>{$lang_insertvideo_desc}</span></li>
+	  </ul>
+	</div>
+	<div class="panel_wrapper">
+	  <div id="general_panel" class="panel_current">
+	     <legend>{$lang_insertvideo_linklegend}</legend>	     	     
+	     <table border="0" cellpadding="4" cellspacing="0">
+	      <tr>
+	       <td nowrap="nowrap">{$lang_insertvideo_link}</td>
+	       <td><input type="text" id="url" name="url" value="" {$lang_insertvideo_inputurlstyle} /></td>
+	      </tr>
+	      <tr>
+	       <td nowrap="nowrap">{$lang_insertvideo_selsource}</td>
+	       <td>
+		    <input type="radio" id="youtube" style="border:0px" name="type" value="1"><img src="images/youtube.png" alt="YouTube" /> YouTube<br />
+		    <input type="radio" id="gvideo" style="border:0px"name="type" value="2"><img src="images/gvideo.png" alt="Google Video" /> Google Video<br />
+		    <input type="radio" id="metacafe" style="border:0px"name="type" value="3"><img src="images/metacafe.png" alt="Metacafe" /> Metacafe<br />
+		    <input type="radio" id="ifilm" style="border:0px"name="type" value="4"><img src="images/ifilm.png" alt="iFilm" /> iFilm<br />
+		    <input type="radio" id="goear" style="border:0px"name="type" value="5"><img src="images/goear.png" alt="Goear" /> Goear<br />
+		    <input type="radio" id="grouper" style="border:0px"name="type" value="6"><img src="images/grouper.png" alt="Grouper" /> Grouper<br />
+		    <input type="radio" id="dailymot" style="border:0px"name="type" value="7"><img src="images/dailymotion.png" alt="dailymotion" /> dailymotion <span style="color: grey; font-style: oblique;">({$lang_insertvideo_dailymotembeddableplayer})</span><br />
+		   </td>
+		  </tr> 			
+		 </table>		    
+		</div>
+		</div>
+		<div class="mceActionPanel">
+		  <div style="float:left">		
+			<input type="button" name="insert" value="{$lang_insert}" onClick="insertVideoCode()" id="insert" />
+		  </div>
+		  <div style="float:right">
+		    <input type="button" name="cancel" value="{$lang_close}" onclick="tinyMCEPopup.close();" id="cancel" />
+		  </div>
+		</div>
+	 </div>
+	</div>				
+	 </form>
+</body>
+</html>
