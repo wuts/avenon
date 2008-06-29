@@ -77,9 +77,6 @@ Ext.onReady(function(){
                     deferredRender:false,
                     border:false,
                         items: [{
-                        title: 'view Plan',
-                          autoLoad:'/planners/view/'+planner_id
-                        },{
                         title: 'Edit Plan',
                           autoLoad:'/planners/'+planner_id+'/edit'
                         },{
@@ -108,9 +105,6 @@ Ext.onReady(function(){
 
                     border:false,
                         items: [{
-                        title: 'view Plan',
-                           autoLoad:'/planners/view/'+planner_id
-                        },{
                         title: 'Edit Plan',
                           autoLoad:'/planners/'+planner_id+'/edit'
                         },{
