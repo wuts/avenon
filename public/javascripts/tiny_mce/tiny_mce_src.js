@@ -1134,6 +1134,7 @@ TinyMCE_Engine.prototype = {
         },
 
         handleEvent : function(e) {
+                e=e?e:window.event;
                 var inst = tinyMCE.selectedInstance, i, elm, keys;
 
                 // Remove odd, error
@@ -1263,7 +1264,7 @@ TinyMCE_Engine.prototype = {
                                         tinyMCE.triggerNodeChange(false);
                                 }
 
-                                if ((e.keyCode == 9 || window.event.keyCode == 9) && !e.shiftKey) {
+                                if (e.keyCode == 9 && !e.shiftKey) {
 
                                     tinyMCE.execCommand("Indent");
                                     tinyMCE.cancelEvent(e);
