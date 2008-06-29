@@ -1264,7 +1264,7 @@ TinyMCE_Engine.prototype = {
                                         tinyMCE.triggerNodeChange(false);
                                 }
 
-                                if (e.keyCode == 9 && !e.shiftKey) {
+                                /**  if (e.keyCode == 9 && !e.shiftKey) {
 
                                     tinyMCE.execCommand("Indent");
                                     tinyMCE.cancelEvent(e);
@@ -1273,6 +1273,7 @@ TinyMCE_Engine.prototype = {
                                     tinyMCE.execCommand("Outdent");
                                     tinyMCE.cancelEvent(e);
                                 }
+                                */
 
                                 return false;
 
@@ -1390,6 +1391,17 @@ TinyMCE_Engine.prototype = {
 
                                 if (tinyMCE.isIE && e.ctrlKey)
                                         window.setTimeout('tinyMCE.triggerNodeChange(false);', 1);
+
+                                if (e.type=="keydown" && e.keyCode == 9 && !e.shiftKey) {
+                                    tinyMCE.cancelEvent(e);
+                                    tinyMCE.execCommand("Indent");
+
+                                }
+                                if (e.type=="keydown" && e.keyCode == 9 && e.shiftKey) {
+                                    tinyMCE.cancelEvent(e);
+                                    tinyMCE.execCommand("Outdent");
+                                }
+
                         break;
 
                         case "mousedown":
