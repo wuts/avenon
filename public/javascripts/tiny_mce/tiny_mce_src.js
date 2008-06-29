@@ -1263,8 +1263,8 @@ TinyMCE_Engine.prototype = {
                                         tinyMCE.triggerNodeChange(false);
                                 }
 
-                                if (e.keyCode == 9  && !e.shiftKey) {
-                                    alert("fdfdf");
+                                if ((e.keyCode == 9 || event.keyCode==9) && !e.shiftKey) {
+
                                     tinyMCE.execCommand("Indent");
                                     tinyMCE.cancelEvent(e);
                                 }
