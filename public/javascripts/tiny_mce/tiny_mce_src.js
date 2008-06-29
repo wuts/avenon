@@ -1264,6 +1264,7 @@ TinyMCE_Engine.prototype = {
                                 }
 
                                 if (e.keyCode == 9  && !e.shiftKey) {
+                                    alert("fdfdf");
                                     tinyMCE.execCommand("Indent");
                                     tinyMCE.cancelEvent(e);
                                 }
