@@ -1264,16 +1264,6 @@ TinyMCE_Engine.prototype = {
                                         tinyMCE.triggerNodeChange(false);
                                 }
 
-                                /**  if (e.keyCode == 9 && !e.shiftKey) {
-
-                                    tinyMCE.execCommand("Indent");
-                                    tinyMCE.cancelEvent(e);
-                                }
-                                if (e.keyCode == 9 && e.shiftKey) {
-                                    tinyMCE.execCommand("Outdent");
-                                    tinyMCE.cancelEvent(e);
-                                }
-                                */
 
                                 return false;
 

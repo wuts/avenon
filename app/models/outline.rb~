@@ -18,7 +18,7 @@ class Outline < ActiveRecord::Base
       if child.has_elements?
         first_childs<<child
       else
-        parent_plan_description+=child.text
+        parent_plan_description+=child.to_a.to_s
       end
     end
 
@@ -27,23 +27,29 @@ class Outline < ActiveRecord::Base
       if (parent_plan.nil?)
         false
       end
-      parser_plan_tree(first_child,parent_plan)
+      parser_plan_tree(first_child,parent_plan,0)
     end
   end
 
   private
-  def parser_plan_tree(node,parent_plan)
+  def parser_plan_tree(node,parent_plan,level)
+
     if(node.has_elements?)
-      parent_node=node.previous_element
-      if (!parent_node.nil? && parent_node.has_text?)
-         parent_plan=Planner.find_by_name(parent_node.text)
+      if level>0
+        parent_node=node.previous_element
+         if (!parent_node.nil? && parent_node.has_text?)
+          parent_plan=Planner.find(:first,:conditions=>"name='#{parent_node.text}' and parent_id=#{parent_plan.id}")
+        end
       end
+      level+=1
       node.elements.each do |el|
-        parser_plan_tree(el,parent_plan)
+        parser_plan_tree(el,parent_plan,level)
       end
     else
       if(node.has_text?)
-         parent_plan.add_child(Planner.create(:name=>node.text,:checked=>false))
+         child_plan=Planner.create(:name=>node.text,:checked=>false)
+         parent_plan.add_child(child_plan)
+
       end
     end
   end

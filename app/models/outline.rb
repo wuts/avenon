@@ -54,5 +54,6 @@ class Outline < ActiveRecord::Base
     end
   end
 
+
 end
 
