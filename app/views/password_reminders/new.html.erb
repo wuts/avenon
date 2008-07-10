@@ -1,0 +1,14 @@
+<h2>Password reminder</h2>
+
+<% form_for :user, :url => password_reminders_path do |form| %>
+  <div class="field_row">
+    <label for="username">Enter your email address:</label>
+    <br />
+    <%= form.text_field :email %>
+    <%= set_focus_to_id "user_email" %>
+  </div>
+
+  <div class="field_row">
+    <%= submit_tag "Send reminder", :class => "submit button" %>
+  </div>
+<% end %>

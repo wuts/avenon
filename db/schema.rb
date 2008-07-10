@@ -9,6 +9,43 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20080708115717) do
+
+  create_table "outlines", :force => true do |t|
+    t.string   "name"
+    t.text     "outline"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "planners", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "start"
+    t.datetime "end"
+    t.integer  "parent_id",   :limit => 11
+    t.integer  "lft",         :limit => 11
+    t.integer  "rgt",         :limit => 11
+    t.boolean  "checked",                                                  :default => false
+    t.string   "uiProvider",                                               :default => "col"
+    t.integer  "score",       :limit => 10, :precision => 10, :scale => 0
+    t.integer  "award",       :limit => 10, :precision => 10, :scale => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "login",                     :limit => 40
+    t.string   "name",                      :limit => 100, :default => ""
+    t.string   "email",                     :limit => 100
+    t.string   "crypted_password",          :limit => 40
+    t.string   "salt",                      :limit => 40
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "remember_token",            :limit => 40
+    t.datetime "remember_token_expires_at"
+  end
+
+  add_index "users", ["login"], :name => "index_users_on_login", :unique => true
 
 end

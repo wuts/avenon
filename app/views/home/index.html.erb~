@@ -1,0 +1,18 @@
+
+
+    <h2>About Insoshi</h2>
+
+    <p><a href="http://insoshi.com/">Insoshi</a>
+       is an open-source project dedicated to making the best
+      social networking platform.</p>
+
+      <p>This is the
+      developer community site for the Insoshi project.
+      </p>
+
+    <div style="text-align: center;">
+      <%= link_to image_tag("button_signup.png"), signup_path %>
+    </div>
+
+
+

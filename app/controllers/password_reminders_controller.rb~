@@ -1,0 +1,2 @@
+class PasswordRemindersController < ApplicationController
+end

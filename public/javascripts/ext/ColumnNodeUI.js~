@@ -116,6 +116,7 @@ Ext.tree.ColumnNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
          }
 
          n.attributes.checked = checked;
+
          tree.fireEvent('check', n, checked);
 
          if(!this.onlyLeafCheckable && this.checkModel == 'cascade'){

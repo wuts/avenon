@@ -13,7 +13,7 @@ Ext.onReady(function(){
         width:752,
         autoHeight:true,
         rootVisible:false,
-        enableDD:false,
+        enableDD:true,
         autoScroll:false,
         useArrows:false,
         title: 'Example Plans',
@@ -57,7 +57,7 @@ Ext.onReady(function(){
 
     });
     var win;
-    tree.on('click',function(node){
+    tree.on('dblclick',function(node){
       if(!win){
           var planner_id=node.attributes.id;
           win = new Ext.Window({
@@ -116,10 +116,36 @@ Ext.onReady(function(){
         });
     });
 
+    var inPlaceEditor;
+    tree.on("click",function(node,e){
+            var score=node.attributes.score;
+            var plan=node.attributes.name;
+            var award=node.attributes.award;
+            var nodeId=node.id;
+            var target=e.getTarget();
+
+            //alert(target.innerHTML);
+            if(!inPlaceEditor){
+              inPlaceEditor=new Ext.form.TextField({
+                    name:"score",
+                    // value:plan,
+                    renderTo:target.id
+
+              })
+            }
+            modifiedText=target.innerHTML;
+            //target.innerHTML="";
+            inPlaceEditor.setValue(modifiedText);
+
+            inPlaceEditor.applyToMarkup(target);
+            inPlaceEditor.show();
+
+    });
+
     tree.on("check",function(node,checked){
             //alert(node.attributes.plan);
             node.cls="x-tree-headers";
-            node.disable();
+            //node.disable();
 
           }); //注册"check"事件
 

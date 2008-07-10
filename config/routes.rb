@@ -1,4 +1,15 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :password_reminders
+
+  map.logout '/logout', :controller => 'sessions', :action => 'destroy'
+  map.home '/home', :controller => 'home', :action => 'index'
+  map.login '/login', :controller => 'sessions', :action => 'new'
+  map.register '/register', :controller => 'users', :action => 'create'
+  map.signup '/signup', :controller => 'users', :action => 'new'
+  map.resources :users
+
+  map.resource :session
+
   map.resources :planners
   map.resources :outlines
 
