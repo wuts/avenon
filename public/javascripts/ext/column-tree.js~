@@ -13,7 +13,7 @@ Ext.onReady(function(){
         width:752,
         autoHeight:true,
         rootVisible:false,
-        enableDD:false,
+        enableDD:true,
         autoScroll:false,
         useArrows:false,
         title: 'Example Plans',
@@ -125,26 +125,20 @@ Ext.onReady(function(){
             var target=e.getTarget();
 
             //alert(target.innerHTML);
-            // if(!inPlaceEditor){
+            if(!inPlaceEditor){
               inPlaceEditor=new Ext.form.TextField({
                     name:"score",
                     // value:plan,
-                    // renderTo:nodeDomId
+                    renderTo:target.id
 
               })
-                  // }
+            }
             modifiedText=target.innerHTML;
-            target.innerHTML="";
+            //target.innerHTML="";
             inPlaceEditor.setValue(modifiedText);
 
-            inPlaceEditor.render(target,target.id);
-
-            alert(target.id);
-            if(inPlaceEditor.hidden==true){
-                 inPlaceEditor.show();
-            }
-            // inPlaceEditor.hide();
-
+            inPlaceEditor.applyToMarkup(target);
+            inPlaceEditor.show();
 
     });
 

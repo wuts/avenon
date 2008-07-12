@@ -3,13 +3,13 @@
 <% form_for(@outline) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :name %><br />
+  <div>
+    <%= f.label :name %>
     <%= f.text_field  :name %>
-  </p>
+  </div>
 
   <p>
-    <%= f.label :outline %><br />
+    <%= f.label :outline %>
     <%= f.text_area :outline %>
   </p>
   <p>

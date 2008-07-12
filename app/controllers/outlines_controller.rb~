@@ -1,5 +1,6 @@
 class OutlinesController < ApplicationController
   # layout "events"
+  #add tiny_mce
 
   uses_tiny_mce(:options => {:theme => 'advanced',
                            :browsers => %w{msie gecko},

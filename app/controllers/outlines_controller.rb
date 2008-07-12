@@ -1,7 +1,5 @@
 class OutlinesController < ApplicationController
-  # layout "events"
   #add tiny_mce
-
   uses_tiny_mce(:options => {:theme => 'advanced',
                            :browsers => %w{msie gecko},
                            :auto_resize=>false,
@@ -15,12 +13,10 @@ class OutlinesController < ApplicationController
                            :paste_auto_cleanup_on_paste => true,
                            :theme_advanced_buttons1 => %w{fontsizeselect bold italic underline strikethrough separator justifyleft justifycenter justifyright indent outdent separator numlist bullist separator undo redo  fullscreen},
                            :theme_advanced_buttons2 => [],
-                  :theme_advanced_resizing=>true,
-
+                           :theme_advanced_resizing=>true,
                            :fullscreen_new_window=>true,
                            :plugins => %w{contextmenu paste fullscreen}},
-
-              :only => [:new, :edit, :show, :index])
+                           :only => [:new,:edit])
 
   # GET /outlines
   # GET /outlines.xml

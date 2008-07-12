@@ -3,7 +3,7 @@ class PlannersController < ApplicationController
   # GET /planners
   # GET /planners.xml
 
-
+  layout "application"
 
   def index
     @planners = Planner.find(:all,:conditions=>["parent_id is NULL or parent_id=0"])

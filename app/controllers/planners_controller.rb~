@@ -6,7 +6,7 @@ class PlannersController < ApplicationController
 
 
   def index
-    @planners = Planner.find(:all)
+    @planners = Planner.find(:all,:conditions=>["parent_id is NULL or parent_id=0"])
 
     respond_to do |format|
      format.html # index.html.erb
@@ -21,7 +21,7 @@ class PlannersController < ApplicationController
 
     node_id=params[:node]
 
-    if (!node_id.is_a?Numeric)
+    if (node_id=='ynode-7')
       node_id=params[:id]
     end
 
@@ -31,6 +31,18 @@ class PlannersController < ApplicationController
       format.json { render :json=>Planner.find_children(node_id).map{ |pl| pl.attributes}}
      end
   end
+
+  # GET /planners/1
+  # GET /planners/1.xml
+  def view
+    @planner = Planner.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @planner }
+     end
+  end
+
 
   # GET /planners/new
   # GET /planners/new.xml

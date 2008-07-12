@@ -7,7 +7,7 @@
 
 <% for outline in @outlines %>
   <tr>
-    <td><%=h outline.name %></td>
+    <td><%= outline.name %></td>
     <td><%= link_to 'Show', outline %></td>
     <td><%= link_to 'Edit', edit_outline_path(outline) %></td>
     <td><%= link_to 'Destroy', outline, :confirm => 'Are you sure?', :method => :delete %></td>

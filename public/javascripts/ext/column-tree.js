@@ -13,18 +13,14 @@ Ext.onReady(function(){
         width:752,
         autoHeight:true,
         rootVisible:false,
-        enableDD:true,
+        enableDD:false,
         autoScroll:false,
         useArrows:false,
         title: 'Example Plans',
 
         columns:[{
-            header:'planner Id',
-            width:100,
-            dataIndex:'id'
-        },{
             header:'Plan',
-            width:350,
+            width:550,
             dataIndex:'name'
         },{
             header:'Score',
@@ -35,8 +31,8 @@ Ext.onReady(function(){
             width:100,
             dataIndex:'award'
         },{
-            header:'Check',
-            width:100,
+            header:'',
+            width:20,
             dataIndex:''
         }],
 
@@ -134,11 +130,9 @@ Ext.onReady(function(){
               })
             }
             modifiedText=target.innerHTML;
-            //target.innerHTML="";
+            // target.innerHTML="";
             inPlaceEditor.setValue(modifiedText);
-
             inPlaceEditor.applyToMarkup(target);
-            inPlaceEditor.show();
 
     });
 
