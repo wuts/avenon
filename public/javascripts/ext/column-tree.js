@@ -10,7 +10,7 @@ Ext.onReady(function(){
 
     var tree = new Ext.tree.ColumnTree({
         el:'tree-ct',
-        width:752,
+        width:800,
         autoHeight:true,
         rootVisible:false,
         enableDD:false,
@@ -20,7 +20,7 @@ Ext.onReady(function(){
 
         columns:[{
             header:'Plan',
-            width:550,
+            width:600,
             dataIndex:'name'
         },{
             header:'Score',
@@ -30,10 +30,6 @@ Ext.onReady(function(){
             header:'Award',
             width:100,
             dataIndex:'award'
-        },{
-            header:'',
-            width:20,
-            dataIndex:''
         }],
 
         loader: new Ext.tree.TreeLoader({
@@ -113,6 +109,9 @@ Ext.onReady(function(){
     });
 
     var inPlaceEditor;
+    var dq=Ext.DomQuery;
+    var dh=Ext.DomHelper;
+    var el;
     tree.on("click",function(node,e){
             var score=node.attributes.score;
             var plan=node.attributes.name;
@@ -121,18 +120,41 @@ Ext.onReady(function(){
             var target=e.getTarget();
 
             //alert(target.innerHTML);
-            if(!inPlaceEditor){
-              inPlaceEditor=new Ext.form.TextField({
-                    name:"score",
-                    // value:plan,
-                    renderTo:target.id
 
-              })
+
+            if(target){
+              if(dq.is(target,"span[id*=plan]") || dq.is(target,"div[id*=plan]")){
+                  if(inPlaceEditor && inPlaceEditor.isVisible()){
+                   modifiedValue=inPlaceEditor.getValue();
+                   el=inPlaceEditor.getEl();
+                    //el.set(modifiedValue);
+                   dh.insertAfter(el,modifiedValue);
+                   inPlaceEditor.destroy();
+                 }
+                 inPlaceEditor=new Ext.form.TextField({
+                     name:"score"
+                   // value:plan,
+                    //renderTo:target.id
+                 })
+                //alert(target.innerHTML);
+                targetValue=target.innerHTML.replace(/<.+?>/gim,'');
+                target.innerHTML="";
+                inPlaceEditor.setValue(targetValue);
+                inPlaceEditor.render(target);
+              }else if(dq.is(target,"input")){
+
+              }else{
+                  if(inPlaceEditor && inPlaceEditor.isVisible()){
+                    modifiedValue=inPlaceEditor.getValue();
+                    el=inPlaceEditor.getEl();
+                    //el.set(modifiedValue);
+                    dh.insertAfter(el,modifiedValue);
+                    inPlaceEditor.hide();
+                  }
+
+              }
+
             }
-            modifiedText=target.innerHTML;
-            // target.innerHTML="";
-            inPlaceEditor.setValue(modifiedText);
-            inPlaceEditor.applyToMarkup(target);
 
     });
 

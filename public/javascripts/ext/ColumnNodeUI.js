@@ -66,7 +66,7 @@ Ext.tree.ColumnNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
              '<img src="', a.icon || this.emptyIcon, '" class="x-tree-node-icon',(a.icon ? " x-tree-node-inline-icon" : ""),(a.iconCls ? " "+a.iconCls : ""),'" unselectable="on">',cb ? ('<input class="x-tree-node-icon" type="checkbox" ' + (a.checked ? 'checked="checked" />' : '/>')) : '',
                     '<a hidefocus="on" class="x-tree-node-anchor" href="',a.href ? a.href : "#",'" tabIndex="1" ',
                     a.hrefTarget ? ' target="'+a.hrefTarget+'"' : "", '>',
-                    '<span unselectable="on">', n.text || (c.renderer ? c.renderer(a[c.dataIndex], n, a) : a[c.dataIndex]),"</span></a>",
+                    '<span id="plan-',c.dataIndex,"-",n.id,'" unselectable="on">', n.text || (c.renderer ? c.renderer(a[c.dataIndex], n, a) : a[c.dataIndex]),"</span></a>",
                 "</div>"];
          for(var i = 1, len = cols.length; i < len; i++){
              c = cols[i];

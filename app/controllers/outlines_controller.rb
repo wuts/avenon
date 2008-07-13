@@ -1,5 +1,7 @@
 class OutlinesController < ApplicationController
   #add tiny_mce
+
+  before_filter :login_required,:except=>[:index,:show]
   uses_tiny_mce(:options => {:theme => 'advanced',
                            :browsers => %w{msie gecko},
                            :auto_resize=>false,

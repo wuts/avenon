@@ -23,6 +23,13 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def login_required
+      unless logged_in?
+        flash[:error] = "Please login first"
+        redirect_to login_url
+      end
+    end
+
     # Create a Scribd-style PageView.
     # See http://www.scribd.com/doc/49575/Scaling-Rails-Presentation
 

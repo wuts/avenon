@@ -50,7 +50,6 @@ body {
   margin: 44px 0 0 0;
   width: 560px;
   float: right;
-
 }
 #nav li {
   background: #069 url(/images/header-grad.jpg) bottom repeat-x;
@@ -62,8 +61,6 @@ body {
   padding: 0;
   text-align: center;
   width: 70px;
-  position:relative;
-  top:1px;
 }
 #nav li a {
   color: #fff;
@@ -78,7 +75,7 @@ body {
   background: #fff;
   color: #069;
 }
-#nav li.nav-home {
+#nav li.n-home {
   margin-left: 0;
 }
 
@@ -89,7 +86,7 @@ body {
   margin-top: 48px;
   padding: 24px 0;
   width: 744px;
-
+  
 }
 
 /* Welcome message */

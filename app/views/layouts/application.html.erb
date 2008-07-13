@@ -16,14 +16,14 @@
           </a>
         </h1>
         <ul id="nav">
-          <li class="nav-home"><%= link_to "Home", home_path %></li>
+          <li class="nav-home active"><%= link_to "Home", home_path %></li>
           <li class="nav-outline"><%= link_to "Outlines", :controller=>"outlines",:action=>"index" %></li>
           <li class="nav-plan"><%= link_to "Plans",:controller=>"planners",:action=>"index" %></li>
         </ul>
 
           <p class="welcome">
             <%- if logged_in? -%>
-              Welcome, <%= h current_user.name %>!
+              Welcome, <%= h current_user.login %>!
               (<%= link_to "Sign out", logout_path %>)
 
             <%- else -%>

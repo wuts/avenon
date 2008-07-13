@@ -1,13 +1,13 @@
-# Filters added to this controller apply to all controllers in the application.
+./# Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  helper :all # include all helpers, all the time
-  include AuthenticatedSystem
+ helper :all # include all helpers, all the time
+ include AuthenticatedSystem
  #include SharedHelper
  #include PreferencesHelper
 
-  before_filter  :require_activation
+ # before_filter  :require_activation
 
 
   # See ActionController::RequestForgeryProtection for details
@@ -17,9 +17,16 @@ class ApplicationController < ActionController::Base
   private
 
     def admin_required
-      unless current_person.admin?
+      unless current_user.admin?
         flash[:error] = "Admin access required"
         redirect_to home_url
+      end
+    end
+
+    def login_required
+      unless logged_in?
+        flash[:error] = "Please login first"
+        redirect_to login_url
       end
     end
 
@@ -27,7 +34,7 @@ class ApplicationController < ActionController::Base
     # See http://www.scribd.com/doc/49575/Scaling-Rails-Presentation
 
     def require_activation
-      if logged_in? and current_person.deactivated? and !current_person.admin?
+      if logged_in?
         redirect_to logout_url
       end
     end
@@ -48,9 +55,9 @@ class ApplicationController < ActionController::Base
             #{default_domain}.
             <a href="#{edit_user_path(current_user)}">Change it here</a>.)
         end
-        if current_person.unencrypted_password == default_password
+        if current_user.unencrypted_password == default_password
           flash[:error] = %(Warning: your password is still the default.
-            <a href="#{edit_person_path(current_person)}">Change it here</a>.)
+            <a href="#{edit_user_path(current_user)}">Change it here</a>.)
         end
       end
     end
