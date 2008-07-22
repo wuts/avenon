@@ -8,6 +8,7 @@
 
 .x-column-tree .x-tree-node {
     zoom:1;
+    font-size:12px;
 }
 .x-column-tree .x-tree-node-el {
     /*border-bottom:1px solid #eee; borders? */
@@ -40,7 +41,7 @@
         text-overflow: ellipsis;
     padding:3px 3px 3px 5px;
     white-space: nowrap;
-    font:normal 11px arial, tahoma, helvetica, sans-serif;
+    font:bold 12px arial, tahoma, helvetica, sans-serif;
 }
 
 .x-tree-headers {

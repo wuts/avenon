@@ -1,11 +1,11 @@
 body {
   font-family: Helvetica, Arial, Univers, Tahoma, sans-serif;
   font-size: 1em;
-  line-height:  1.05em;  
+  line-height:  1.05em;
 }
 p,
-li, 
-th, 
+li,
+th,
 td {
   font-size:  14px;
   line-height:  1.4em;
@@ -13,14 +13,14 @@ td {
 li li, li p {
   font-size: 100%;
 }
-p, 
-ul, 
-ol, 
-blockquote, 
-h2, 
-h3, 
-h4, 
-h5, 
+p,
+ul,
+ol,
+blockquote,
+h2,
+h3,
+h4,
+h5,
 h6 {
   display:  block;
   margin-bottom: 1em;
@@ -68,10 +68,10 @@ h6 {
   font-style: italic;
 }
 ul li {
-  background: url(/images/bullet.png) top left no-repeat;
+  /*background: url(/images/bullet.png) top left no-repeat;*/
   border: 0;
   margin: 0 0 .5em 0;
-  padding-left: 24px;
+  padding-left: 0px;
 }
 ol li {
   list-style: decimal;
@@ -170,7 +170,7 @@ a.show-follow:visited {
 }
 
 .error,
-.notice, 
+.notice,
 .success    { padding: .8em; margin-bottom: 1em; border: 2px solid #ddd;
               margin-top: 1em; }
 

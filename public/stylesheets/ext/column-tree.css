@@ -63,3 +63,16 @@
 .task-folder {
     background-image:url(/images/ext/shared/icons/fam/folder_go.png) !important;
 }
+
+.badd {
+    background-image:url(/images/icons/add.gif) !important;
+}
+.bedit{
+    background-image:url(/images/icons/edit.gif) !important;
+}
+.bdel{
+    background-image:url(/images/icons/trash.gif) !important;
+}
+.bcheck{
+    background-image:url(/images/icons/check.gif) !important;
+}

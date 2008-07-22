@@ -13,7 +13,7 @@ Ext.onReady(function(){
         width:800,
         autoHeight:true,
         rootVisible:false,
-        enableDD:false,
+        enableDD:true,
         autoScroll:false,
         useArrows:false,
         title: 'Example Plans',
@@ -33,7 +33,7 @@ Ext.onReady(function(){
         }],
 
         loader: new Ext.tree.TreeLoader({
-                dataUrl:window.location.href,
+            dataUrl:window.location.href,
             requestMethod: 'GET',
             baseParams:{format:'json'},
             uiProviders:{
@@ -43,7 +43,7 @@ Ext.onReady(function(){
         }),
 
         root: new Ext.tree.AsyncTreeNode({
-           text:'Planns',
+           text:'Planners',
            draggable:true
         })
 
@@ -55,6 +55,7 @@ Ext.onReady(function(){
           win = new Ext.Window({
                 el:'hello-win',
                 layout:'fit',
+                autoScoll:true,
                 width:800,
                 height:600,
                 closeAction:'hide',
@@ -112,51 +113,101 @@ Ext.onReady(function(){
     var dq=Ext.DomQuery;
     var dh=Ext.DomHelper;
     var el;
+    var nodeId;
+    var fieldName;
+    var msg=Ext.get('msg');
+    var modifiedValue;
     tree.on("click",function(node,e){
-            var score=node.attributes.score;
-            var plan=node.attributes.name;
-            var award=node.attributes.award;
-            var nodeId=node.id;
-            var target=e.getTarget();
+            //var score=node.attributes.score;
+            //var plan=node.attributes.name;
+            //var award=node.attributes.award;
 
-            //alert(target.innerHTML);
+
+            var target=e.getTarget("",2,true);
 
 
             if(target){
-              if(dq.is(target,"span[id*=plan]") || dq.is(target,"div[id*=plan]")){
-                  if(inPlaceEditor && inPlaceEditor.isVisible()){
+              if(dq.is(target.dom,"span[id*=plan]") || dq.is(target.dom,"div[id*=plan]")){
+                 if(dq.is(target.dom,"span[id*=plan-name]") || dq.is(target.dom,"div[id*=plan-name]")){
+                   fieldName="name";
+                 }
+                 else if(dq.is(target.dom,"span[id*=plan-score]") || dq.is(target.dom,"div[id*=plan-score]")){
+                   fieldName="score";
+                 }
+                 else if(dq.is(target.dom,"span[id*=plan-award]") || dq.is(target.dom,"div[id*=plan-award]")){
+                   fieldName="award";
+                 }
+                 else{
+                   fieldName="";
+                 }
+                 nodeId=node.id;
+
+                 if(inPlaceEditor && inPlaceEditor.isVisible()){
                    modifiedValue=inPlaceEditor.getValue();
-                   el=inPlaceEditor.getEl();
-                    //el.set(modifiedValue);
-                   dh.insertAfter(el,modifiedValue);
+                   if(fieldName!="" && modifiedValue!=""){
+                       updatePlanner(nodeId,fieldName,modifiedValue);
+                   }
                    inPlaceEditor.destroy();
                  }
+
                  inPlaceEditor=new Ext.form.TextField({
-                     name:"score"
+                   name:"score",
+                   grow:true,
+                   growMax:500
                    // value:plan,
                     //renderTo:target.id
-                 })
+                });
+
                 //alert(target.innerHTML);
-                targetValue=target.innerHTML.replace(/<.+?>/gim,'');
-                target.innerHTML="";
+                targetValue=target.dom.innerHTML.replace(/<.+?>/gim,'');
+                //target.innerHTML="";
+                // targetValue=target.getValue();
+                target.update("");
                 inPlaceEditor.setValue(targetValue);
                 inPlaceEditor.render(target);
-              }else if(dq.is(target,"input")){
+              }else if(dq.is(target.dom,"input")){
+                  inPlaceEditor.syncSize();
 
               }else{
                   if(inPlaceEditor && inPlaceEditor.isVisible()){
                     modifiedValue=inPlaceEditor.getValue();
-                    el=inPlaceEditor.getEl();
-                    //el.set(modifiedValue);
-                    dh.insertAfter(el,modifiedValue);
+                    if(fieldName!="" && modifiedValue!=""){
+                      updatePlanner(nodeId,fieldName,modifiedValue);
+                    }
                     inPlaceEditor.hide();
                   }
 
               }
-
             }
 
     });
+
+    function updatePlanner(id,field,value){
+        Ext.Ajax.request({
+             url:"/planners/"+id+".xml",
+             method:"PUT",
+             params:"planner["+field+"]="+value,
+             success:updateNode(value),
+             failure:undoUpdateNode(value)
+
+        });
+        // Ext.Ajax.on("beforerequest",this.showSpinner,this);
+    }
+
+    function updateNode(value){
+        el=inPlaceEditor.getEl();
+        el.update("");
+        dh.insertAfter(el,value);
+        inPlaceEditor.hide();
+        msg.setWidth(100,true);
+    }
+
+    function undoUpdateNode(originValue){
+        el=inPlaceEditor.getEl();
+        el.update("");
+        dh.insertAfter(el,originValue);
+        inPlaceEditor.hide();
+    }
 
     tree.on("check",function(node,checked){
             //alert(node.attributes.plan);
@@ -164,6 +215,149 @@ Ext.onReady(function(){
             //node.disable();
 
           }); //注册"check"事件
+
+    Ext.tree.TreeNodeUI.prototype.onOver=function(e){
+      this.addClass('x-tree-node-over');
+      this.fireEvent("mouseover", this.node, e);
+    };
+
+    tree.addListener('mouseover',showFloattingToolbar);
+
+   var floattingToolbar;
+
+   var addAction=new Ext.Action({
+           text:"",
+           handler:function(){
+               Ext.MessageBox.alert("new plan");
+           },
+           iconCls:"badd"
+       });
+
+    var editAction=new Ext.Action({
+           text:"",
+           handler:showPlanEditor,
+           iconCls:"bedit"
+       });
+
+
+    var delAction=new Ext.Action({
+           text:"",
+           handler:function(){
+               Ext.MessageBox.alert("Delete plan");
+           },
+           iconCls:"bdel"
+       });
+
+    var checkAction=new Ext.Action({
+           text:"",
+           handler:function(){
+               Ext.MessageBox.alert("new plan");
+           },
+           iconCls:"bcheck"
+       });
+
+
+    var editWin;
+    var showWin;
+
+    function showPlanEditor(PlanId){
+      if(!editWin){
+          editWin=new Ext.Window({
+              el:'plan-editor',
+              title:"Plan Editor",
+              width:600,
+              height:600,
+              closeAction:'hide',
+              layout:'column',
+
+              items:new Ext.form.FormPanel({
+                   labelWidth: 75,
+                   title: 'Form Layout',
+                   bodyStyle:'padding:15px',
+                   width: 550,
+                   labelPad: 10,
+                   defaultType: 'textfield',
+                   defaults: {
+                      // applied to each contained item
+                     width: 230,
+                      msgTarget: 'side'
+                     },
+                   layoutConfig: {
+                         // layout-specific configs go here
+                      labelSeparator: ''
+                   },
+
+                    items: [{
+                        fieldLabel: 'Name',
+                        name: 'name',
+                        allowBlank: false
+                     },{
+                     fieldLabel: 'Score',
+                       name: 'score',
+                       allowBlank: false
+                     },{
+                    fieldLabel: 'Award',
+                      name: 'award',
+                      allowBlank: false
+                    },{
+                    fieldLabel: 'Description',
+                      name: 'description',
+                      xtype:'textarea',
+                      allowBlank: true
+                    },{
+                    fieldLabel: 'Start',
+                     name: 'start',
+                     xtype:'datefield'
+
+                    },{
+                    fieldLabel: 'End',
+                     name: 'end',
+                     xtype:'datefield'
+                    }],
+              }),
+
+
+              buttons: [{
+                text: 'Close',
+                handler: function(){
+                   editWin.hide();
+                }
+             }]
+          });
+      }
+      editWin.show();
+    }
+
+    function viewPlan(planId){
+    }
+
+    function delPlan(planId){
+    }
+
+
+    function showFloattingToolbar(node,e){
+       if(node){
+
+           treePosition=tree.getPosition();
+           treeSize=tree.getSize();
+           tx=treePosition[0]+treeSize.width;
+           ty=e.getPageY();
+           if(!floattingToolbar){
+               floattingToolbar=new Ext.Panel({
+                       height:20,
+                       x:tx,
+                       y:ty,
+                       floating:true,
+                       renderTo:"floatting-toolbar",
+                       tbar:[checkAction,addAction,editAction,delAction]
+
+                   });
+           }
+          floattingToolbar.show();
+          floattingToolbar.setPagePosition(tx,ty);
+       }
+
+   }
 
     tree.render();
     tree.expandAll(true)

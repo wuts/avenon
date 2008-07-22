@@ -3,7 +3,10 @@ class PlannersController < ApplicationController
   # GET /planners
   # GET /planners.xml
 
+  protect_from_forgery :only => :index
 
+
+  before_filter :login_required
 
   def index
     @planners = Planner.find(:all,:conditions=>["parent_id is NULL or parent_id=0"])
@@ -91,6 +94,26 @@ class PlannersController < ApplicationController
         format.html { render :action => "edit" }
         format.xml  { render :xml => @planner.errors, :status => :unprocessable_entity }
       end
+    end
+  end
+
+  #ajax update
+  def ajax_update
+    @planner = Planner.find(params[:id])
+    dfield=params[:dfield]
+    dvalue=params[:dvalue]
+    case dfield
+      when "name"
+      @planner.name=dvalue
+      when "score"
+      @planner.score=dvalue
+      when "award"
+      @planner.award=dvalue
+      else
+    end
+    @planner.save
+    respond_to do |format|
+      format.xml{ head :ok}
     end
   end
 

@@ -213,42 +213,6 @@ Ext.onReady(function(){
 
           }); //注册"check"事件
 
-    Ext.tree.TreeNodeUI.prototype.onOver=function(e){
-      this.addClass('x-tree-node-over');
-      this.fireEvent("mouseover", this.node, e);
-    };
-
-    tree.addListener('mouseover',a);
-
-   var floatWin;
-   function a(node){
-       if(node){
-           if(!floatWin){
-               floatWin=new Ext.Panel({
-                       width:100,
-
-                       plain:true,
-
-                       height:80,
-                       x:800,
-                       y:200,
-                       floating:true,
-                       renderTo:"msg",
-
-                       items:new Ext.form.TextField(
-                          {
-                              name:"btn",
-                              value:"title"
-                          })
-                   });
-
-           }
-           floatWin.show();
-           floatWin.setPagePosition(800,node.id);
-       }
-
-   }
-
     tree.render();
     tree.expandAll(true)
 

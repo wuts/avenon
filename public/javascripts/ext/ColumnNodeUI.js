@@ -38,23 +38,14 @@ Ext.tree.ColumnTree = Ext.extend(Ext.tree.TreePanel, {
     }
 });
 
-
 Ext.tree.ColumnNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
     focus: Ext.emptyFn, // prevent odd scrolling behavior
-    checkModel:'multiple',
-
-     //only leaf can checked
-    onlyLeafCheckable:false,
 
     renderElements : function(n, a, targetNode, bulkRender){
         this.indentMarkup = n.parentNode ? n.parentNode.ui.getChildIndent() : '';
 
-
         var t = n.getOwnerTree();
-        this.checkModel = t.checkModel || this.checkModel;
-        this.onlyLeafCheckable = t.onlyLeafCheckable || false;
         var cols = t.columns;
-        var cb = (!this.onlyLeafCheckable || a.leaf);
         var bw = t.borderWidth;
         var c = cols[0];
 
@@ -63,7 +54,7 @@ Ext.tree.ColumnNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
                 '<div class="x-tree-col" style="width:',c.width-bw,'px;">',
                     '<span class="x-tree-node-indent">',this.indentMarkup,"</span>",
                     '<img src="', this.emptyIcon, '" class="x-tree-ec-icon x-tree-elbow">',
-             '<img src="', a.icon || this.emptyIcon, '" class="x-tree-node-icon',(a.icon ? " x-tree-node-inline-icon" : ""),(a.iconCls ? " "+a.iconCls : ""),'" unselectable="on">',cb ? ('<input class="x-tree-node-icon" type="checkbox" ' + (a.checked ? 'checked="checked" />' : '/>')) : '',
+                    '<img src="', a.icon || this.emptyIcon, '" class="x-tree-node-icon',(a.icon ? " x-tree-node-inline-icon" : ""),(a.iconCls ? " "+a.iconCls : ""),'" unselectable="on">',
                     '<a hidefocus="on" class="x-tree-node-anchor" href="',a.href ? a.href : "#",'" tabIndex="1" ',
                     a.hrefTarget ? ' target="'+a.hrefTarget+'"' : "", '>',
                     '<span id="plan-',c.dataIndex,"-",n.id,'" unselectable="on">', n.text || (c.renderer ? c.renderer(a[c.dataIndex], n, a) : a[c.dataIndex]),"</span></a>",
@@ -72,7 +63,7 @@ Ext.tree.ColumnNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
              c = cols[i];
 
              buf.push('<div class="x-tree-col ',(c.cls?c.cls:''),'" style="width:',c.width-bw,'px;">',
-                      '<div id="plan-',c.dataIndex,"-",n.id,'" class="x-tree-col-text">',(c.renderer ? c.renderer(a[c.dataIndex], n, a) : a[c.dataIndex]),"</div>",
+                        '<div id="plan-',c.dataIndex,"-",n.id,'" class="x-tree-col-text">',(c.renderer ? c.renderer(a[c.dataIndex], n, a) : a[c.dataIndex]),"</div>",
                       "</div>");
          }
          buf.push(
@@ -93,105 +84,7 @@ Ext.tree.ColumnNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
         this.indentNode = cs[0];
         this.ecNode = cs[1];
         this.iconNode = cs[2];
-        var index = 3;
-         if(cb){
-             this.checkbox = cs[3];
-             Ext.fly(this.checkbox).on('click', this.check.createDelegate(this,[null]));
-             index++;
-         }
-        this.anchor = cs[index];
+        this.anchor = cs[3];
         this.textNode = cs[3].firstChild;
-    },
-     // private
-     check : function(checked){
-         var n = this.node;
-
-         var tree = n.getOwnerTree();
-         this.checkModel = tree.checkModel || this.checkModel;
-
-         if( checked === null ) {
-             checked = this.checkbox.checked;
-         } else {
-             this.checkbox.checked = checked;
-         }
-
-         n.attributes.checked = checked;
-
-         tree.fireEvent('check', n, checked);
-
-         if(!this.onlyLeafCheckable && this.checkModel == 'cascade'){
-             var parentNode = n.parentNode;
-             if(parentNode !== null) {
-                 this.parentCheck(parentNode,checked);
-             }
-             if( !n.expanded && !n.childrenRendered ) {
-                 n.expand(false,false,this.childCheck);
-             }
-             else {
-                 this.childCheck(n);
-             }
-         }else if(this.checkModel == 'single'){
-             var checkedNodes = tree.getChecked();
-             for(var i=0;i<checkedNodes.length;i++){
-                 var node = checkedNodes[i];
-                 if(node.id != n.id){
-                     node.getUI().checkbox.checked = false;
-                     node.attributes.checked = false;
-                     tree.fireEvent('check', node, false);
-                 }
-             }
-         }
-
-     },
-
-     // private
-     childCheck : function(node){
-         var a = node.attributes;
-         if(!a.leaf) {
-             var cs = node.childNodes;
-             var csui;
-             for(var i = 0; i < cs.length; i++) {
-                 csui = cs[i].getUI();
-                 if(csui.checkbox.checked ^ a.checked)
-                     csui.check(a.checked);
-             }
-         }
-     },
-
-     // private
-     parentCheck : function(node ,checked){
-         var checkbox = node.getUI().checkbox;
-         if(typeof checkbox == 'undefined')return ;
-         if(!(checked ^ checkbox.checked))return;
-         if(!checked && this.childHasChecked(node))return;
-         checkbox.checked = checked;
-         node.attributes.checked = checked;
-         node.getOwnerTree().fireEvent('check', node, checked);
-
-         var parentNode = node.parentNode;
-         if( parentNode !== null){
-             this.parentCheck(parentNode,checked);
-         }
-     },
-
-     // private
-     childHasChecked : function(node){
-         var childNodes = node.childNodes;
-         if(childNodes || childNodes.length>0){
-             for(var i=0;i<childNodes.length;i++){
-                 if(childNodes[i].getUI().checkbox.checked)
-                     return true;
-             }
-         }
-         return false;
-     },
-
-     toggleCheck : function(value){
-         var cb = this.checkbox;
-         if(cb){
-             var checked = (value === undefined ? !cb.checked : value);
-             this.check(checked);
-         }
-   }
-
+    }
 });

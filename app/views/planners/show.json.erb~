@@ -1,6 +1,6 @@
 [{
     planner_id:11,
-    plan:'减肥计划',
+    text:'减肥计划',
     score:'500',
     award:'1000',
     checked:true,
