@@ -3,6 +3,8 @@ class PlannersController < ApplicationController
   # GET /planners
   # GET /planners.xml
 
+  layout "planners",:except=>[:new,:edit]
+
   protect_from_forgery :only => :index
 
 
@@ -51,9 +53,10 @@ class PlannersController < ApplicationController
   # GET /planners/new.xml
   def new
     @planner = Planner.new
+    @parent_id=params[:parent_id]
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render :layout=>"planners-min"}# new.html.erb
       format.xml  { render :xml => @planner }
     end
   end
@@ -61,6 +64,7 @@ class PlannersController < ApplicationController
   # GET /planners/1/edit
   def edit
     @planner = Planner.find(params[:id])
+    render :layout=>"planners-min"
   end
 
   # POST /planners

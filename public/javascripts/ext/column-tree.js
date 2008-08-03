@@ -55,7 +55,7 @@ Ext.onReady(function(){
           win = new Ext.Window({
                 el:'hello-win',
                 layout:'fit',
-                autoScoll:true,
+                autoScroll:false,
                 width:800,
                 height:600,
                 closeAction:'hide',
@@ -67,14 +67,20 @@ Ext.onReady(function(){
                     el: 'hello-tabs',
                     autoTabs:true,
                     activeTab:0,
+
+                    autoScroll:true,
                     deferredRender:false,
                     border:false,
                         items: [{
                         title: 'Edit Plan',
-                          autoLoad:'/planners/'+planner_id+'/edit'
+                        autoHeight:true,
+                        autoScroll:true,
+                        autoLoad:'/planners/'+planner_id+'/edit'
                         },{
                         title: 'New Plan',
-                           autoLoad:'/planners/new'
+                         autoHeight:true,
+                         autoScroll:true,
+                         autoLoad:'/planners/new'
                         }]
 
                 }),
@@ -222,14 +228,15 @@ Ext.onReady(function(){
     };
 
     tree.addListener('mouseover',showFloattingToolbar);
+    tree.render();
+    tree.expandAll(true)
 
    var floattingToolbar;
+   var sharedPlannerId=0;
 
    var addAction=new Ext.Action({
            text:"",
-           handler:function(){
-               Ext.MessageBox.alert("new plan");
-           },
+           handler:showAddPlanEditor,
            iconCls:"badd"
        });
 
@@ -243,7 +250,14 @@ Ext.onReady(function(){
     var delAction=new Ext.Action({
            text:"",
            handler:function(){
-               Ext.MessageBox.alert("Delete plan");
+               Ext.Msg.show({
+                  title:'Delete Plan?',
+                  msg: 'You are deleting plan. Are you sure?',
+                  buttons: Ext.Msg.YESNO,
+                  animEl: 'del-msgbox',
+                  fn:deletePlan,
+                  icon: Ext.MessageBox.QUESTION
+               });
            },
            iconCls:"bdel"
        });
@@ -256,111 +270,130 @@ Ext.onReady(function(){
            iconCls:"bcheck"
        });
 
+    function deletePlan(){
+        Ext.Ajax.request({
+             url:"/planners/"+sharedPlannerId,
+             method:"DELETE",
+             success:Ext.Msg.alert("delete successfully"),
+             failure:Ext.Msg.alert("delete failure")
+
+        });
+
+    }
+
 
     var editWin;
     var showWin;
+    var editPanel;
 
-    function showPlanEditor(PlanId){
+    function showPlanEditor(){
+      if(!editPanel){
+          editPanel=new Ext.Panel({
+                      title: 'Edit Plan',
+                      renderTo:"editPanel",
+                      autoScroll:true,
+                      autoHeight:true,
+                      autoLoad:'/planners/'+sharedPlannerId+'/edit'
+            });
+      }
+
       if(!editWin){
           editWin=new Ext.Window({
-              el:'plan-editor',
+              animEl:'plan-editor',
               title:"Plan Editor",
-              width:600,
+              width:700,
               height:600,
+              autoScroll:true,
               closeAction:'hide',
-              layout:'column',
-
-              items:new Ext.form.FormPanel({
-                   labelWidth: 75,
-                   title: 'Form Layout',
-                   bodyStyle:'padding:15px',
-                   width: 550,
-                   labelPad: 10,
-                   defaultType: 'textfield',
-                   defaults: {
-                      // applied to each contained item
-                     width: 230,
-                      msgTarget: 'side'
-                     },
-                   layoutConfig: {
-                         // layout-specific configs go here
-                      labelSeparator: ''
-                   },
-
-                    items: [{
-                        fieldLabel: 'Name',
-                        name: 'name',
-                        allowBlank: false
-                     },{
-                     fieldLabel: 'Score',
-                       name: 'score',
-                       allowBlank: false
-                     },{
-                    fieldLabel: 'Award',
-                      name: 'award',
-                      allowBlank: false
-                    },{
-                    fieldLabel: 'Description',
-                      name: 'description',
-                      xtype:'textarea',
-                      allowBlank: true
-                    },{
-                    fieldLabel: 'Start',
-                     name: 'start',
-                     xtype:'datefield'
-
-                    },{
-                    fieldLabel: 'End',
-                     name: 'end',
-                     xtype:'datefield'
-                    }],
-              }),
-
+              layout:'fit',
+              items:editPanel,
 
               buttons: [{
                 text: 'Close',
                 handler: function(){
                    editWin.hide();
+
                 }
              }]
           });
       }
+      updater=editPanel.getUpdater();
+      updater.update({url:'/planners/'+sharedPlannerId+'/edit'});
       editWin.show();
     }
 
-    function viewPlan(planId){
-    }
 
-    function delPlan(planId){
+    var addWin;
+    var showAddWin;
+    var addPanel;
+
+    function showAddPlanEditor(){
+      if(!addPanel){
+          addPanel=new Ext.Panel({
+                      title: 'Add Plan',
+                      renderTo:"addPanel",
+                      autoScroll:true,
+                      autoHeight:true,
+                      autoLoad:'/planners/new?parent_id='+sharedPlannerId
+            });
+      }
+
+      if(!addWin){
+          addWin=new Ext.Window({
+              el:'add-plan-editor',
+              title:"Add Plan Editor",
+              width:820,
+              height:600,
+              autoScroll:true,
+              closeAction:'hide',
+              layout:'fit',
+              items:addPanel,
+
+              buttons: [{
+                text: 'Close',
+                handler: function(){
+                   addWin.hide();
+
+                }
+             }]
+          });
+      }
+      updater=addPanel.getUpdater();
+      updater.update({url:'/planners/new?parent_id='+sharedPlannerId});
+      addWin.show();
     }
 
 
     function showFloattingToolbar(node,e){
        if(node){
-
+           var planner_id=node.attributes.id;
+           sharedPlannerId=planner_id;
            treePosition=tree.getPosition();
            treeSize=tree.getSize();
            tx=treePosition[0]+treeSize.width;
            ty=e.getPageY();
-           if(!floattingToolbar){
-               floattingToolbar=new Ext.Panel({
-                       height:20,
-                       x:tx,
-                       y:ty,
-                       floating:true,
-                       renderTo:"floatting-toolbar",
-                       tbar:[checkAction,addAction,editAction,delAction]
 
-                   });
-           }
-          floattingToolbar.show();
-          floattingToolbar.setPagePosition(tx,ty);
+           if(!floattingToolbar){
+             floattingToolbar=new Ext.Toolbar({
+                    renderTo:"floatting-toolbar",
+                    xtype:"tbbutton",
+                    width:90,
+                    height:25,
+                    x:tx,
+                    y:ty
+
+              });
+
+            floattingToolbar.show();
+            floattingToolbar.addButton([checkAction,addAction,editAction,delAction]);
+
+          }
+          floattingToolbar.setPagePosition(tx,ty-floattingToolbar.height);
+
        }
 
    }
 
-    tree.render();
-    tree.expandAll(true)
 
 });
 

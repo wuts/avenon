@@ -55,6 +55,7 @@ Ext.onReady(function(){
           win = new Ext.Window({
                 el:'hello-win',
                 layout:'fit',
+                autoScroll:false,
                 width:800,
                 height:600,
                 closeAction:'hide',
@@ -66,14 +67,20 @@ Ext.onReady(function(){
                     el: 'hello-tabs',
                     autoTabs:true,
                     activeTab:0,
+
+                    autoScroll:true,
                     deferredRender:false,
                     border:false,
                         items: [{
                         title: 'Edit Plan',
-                          autoLoad:'/planners/'+planner_id+'/edit'
+                        autoHeight:true,
+                        autoScroll:true,
+                        autoLoad:'/planners/'+planner_id+'/edit'
                         },{
                         title: 'New Plan',
-                           autoLoad:'/planners/new'
+                         autoHeight:true,
+                         autoScroll:true,
+                         autoLoad:'/planners/new'
                         }]
 
                 }),
@@ -150,7 +157,9 @@ Ext.onReady(function(){
                  }
 
                  inPlaceEditor=new Ext.form.TextField({
-                     name:"score"
+                   name:"score",
+                   grow:true,
+                   growMax:500
                    // value:plan,
                     //renderTo:target.id
                 });
@@ -218,39 +227,153 @@ Ext.onReady(function(){
       this.fireEvent("mouseover", this.node, e);
     };
 
-    tree.addListener('mouseover',a);
+    tree.addListener('mouseover',showFloattingToolbar);
+    tree.render();
+    tree.expandAll(true)
 
-   var floatWin;
-   function a(node){
+   var floattingToolbar;
+   var sharedPlannerId=0;
+
+   var addAction=new Ext.Action({
+           text:"",
+           handler:showAddPlanEditor,
+           iconCls:"badd"
+       });
+
+    var editAction=new Ext.Action({
+           text:"",
+           handler:showPlanEditor,
+           iconCls:"bedit"
+       });
+
+
+    var delAction=new Ext.Action({
+           text:"",
+           handler:function(){
+               Ext.MessageBox.alert(sharedPlannerId);
+           },
+           iconCls:"bdel"
+       });
+
+    var checkAction=new Ext.Action({
+           text:"",
+           handler:function(){
+               Ext.MessageBox.alert("new plan");
+           },
+           iconCls:"bcheck"
+       });
+
+
+    var editWin;
+    var showWin;
+    var editPanel;
+
+    function showPlanEditor(){
+      if(!editPanel){
+          editPanel=new Ext.Panel({
+                      title: 'Edit Plan',
+                      renderTo:"editPanel",
+                      autoScroll:true,
+                      autoHeight:true,
+                      autoLoad:'/planners/'+sharedPlannerId+'/edit'
+            });
+      }
+
+      if(!editWin){
+          editWin=new Ext.Window({
+              el:'plan-editor',
+              title:"Plan Editor",
+              width:700,
+              height:600,
+              autoScroll:true,
+              closeAction:'hide',
+              layout:'fit',
+              items:editPanel,
+
+              buttons: [{
+                text: 'Close',
+                handler: function(){
+                   editWin.hide();
+                }
+             }]
+          });
+      }
+      updater=editPanel.getUpdater();
+      updater.update({url:'/planners/'+sharedPlannerId+'/edit'});
+      editWin.show();
+    }
+
+
+    var addWin;
+    var showAddWin;
+    var addPanel;
+
+    function showAddPlanEditor(){
+      if(!addPanel){
+          addPanel=new Ext.Panel({
+                      title: 'Add Plan',
+                      renderTo:"addPanel",
+                      autoScroll:true,
+                      autoHeight:true,
+                      autoLoad:'/planners/new?parent_id='+planner_id
+            });
+      }
+
+      if(!addWin){
+          addWin=new Ext.Window({
+              el:'add-plan-editor',
+              title:"Add Plan Editor",
+              width:820,
+              height:600,
+              autoScroll:true,
+              closeAction:'hide',
+              layout:'fit',
+              items:addPanel,
+
+              buttons: [{
+                text: 'Close',
+                handler: function(){
+                   addWin.hide();
+                }
+             }]
+          });
+      }
+      updater=addPanel.getUpdater();
+      updater.update({url:'/planners/new'});
+      addWin.show();
+    }
+
+
+    function showFloattingToolbar(node,e){
        if(node){
-           if(!floatWin){
-               floatWin=new Ext.Panel({
-                       width:100,
+           var planner_id=node.attributes.id;
+           sharedPlannerId=planner_id;
+           treePosition=tree.getPosition();
+           treeSize=tree.getSize();
+           tx=treePosition[0]+treeSize.width;
+           ty=e.getPageY();
 
-                       plain:true,
+           if(!floattingToolbar){
+             floattingToolbar=new Ext.Toolbar({
+                    renderTo:"floatting-toolbar",
+                    xtype:"tbbutton",
+                    width:90,
+                    height:25,
+                    x:tx,
+                    y:ty
 
-                       height:80,
-                       x:800,
-                       y:200,
-                       floating:true,
-                       renderTo:"msg",
+              });
 
-                       items:new Ext.form.TextField(
-                          {
-                              name:"btn",
-                              value:"title"
-                          })
-                   });
+            floattingToolbar.show();
+            floattingToolbar.addButton([checkAction,addAction,editAction,delAction]);
 
-           }
-           floatWin.show();
-           floatWin.setPagePosition(800,node.id);
+          }
+          floattingToolbar.setPagePosition(tx,ty);
+
        }
 
    }
 
-    tree.render();
-    tree.expandAll(true)
 
 });
 

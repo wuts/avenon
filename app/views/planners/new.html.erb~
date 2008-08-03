@@ -1,15 +1,20 @@
-<h1>New planner</h1>
 
-<% form_for(@planner) do |f| %>
-  <%= f.error_messages %>
+
+<% form_remote_for(@planner,:complete=>"Element.hide('planner-spinner');Element.show('planner-msg');$('planner-msg').innerHTML='Successfully Created'",:before=>"Element.show('planner-spinner');Element.hide('planner-msg')") do |f| %>
+
+<%= f.error_messages %>
 
   <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.label :score %><br />
+    <%= f.text_field :score %>
+  </p>
+  <p>
+    <%= f.label :award %><br />
+    <%= f.text_field :award %>
   </p>
   <p>
     <%= f.label :start %><br />
@@ -23,17 +28,15 @@
     <%= f.label :parent_id %><br />
     <%= f.text_field :parent_id %>
   </p>
-  <p>
-    <%= f.label :score %><br />
-    <%= f.text_field :score %>
-  </p>
-  <p>
-    <%= f.label :award %><br />
-    <%= f.text_field :award %>
+
+   <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
   </p>
   <p>
     <%= f.submit "Create" %>
   </p>
+   <div id="planner-msg" style="background-color:#fff1A8;font-size:80%;font-weight:bold;width:300px;line-height:30px;text-align:center;display:none"></div><div><%= image_tag "icons/spinnergreen.gif",:width=>'32',:id=>'planner-spinner',:style=>"display:none" %></div>
 <% end %>
 
-<%= link_to 'Back', planners_path %>
+

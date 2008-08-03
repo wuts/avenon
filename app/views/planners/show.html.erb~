@@ -2,7 +2,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Customizing TreePanel</title>
-<%= javascript_include_tag "ext/adapter/ext/ext-base",
+<%= javascript_include_tag "ext/adapter/ext/ext-base",:defaults,
                              "ext/ext-all",
                              "ext/TreeCheckNodeUI",
                              "ext/ColumnNodeUI",
@@ -10,14 +10,14 @@
                              "ext/shared/examples"%>
     <%= stylesheet_link_tag 'ext/ext-all'%>
     <%= stylesheet_link_tag 'ext/column-tree'%>
-    <%= stylesheet_link_tag 'ext/shared/examples'%>
+
 
 </head>
 <body>
 
 <h1><%= @planner.name %></h1>
 
-<div id="msg"></div><div><input type="button" value="New Node" id="newnode" /></div>
+<div id="msg"></div><div></div>
 <div id="tree-ct">
 
 </div>
@@ -28,7 +28,12 @@
 
     </div>
 </div>
-
+<div id="floatting-toolbar"></div><div id="add-plan-editor"></div>
+<div id="newTb"></div>
+<div id="plan-editor"></div>
+<div id="plan-view"></div>
+<div id="editPanel"></div>
+<div id="addPanel"></div>
 
 <br /><br /><br /><br /><br />
 </body>

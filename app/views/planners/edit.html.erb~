@@ -1,11 +1,16 @@
-<h1>Editing planner</h1>
+<%= javascript_include_tag 'prototype' %>
 
-<% form_for(@planner) do |f| %>
+<% form_remote_for(@planner,:complete=>"Element.hide('planner-spinner');Element.show('planner-msg');$('planner-msg').innerHTML='Successfully Updated'",:before=>"Element.show('planner-spinner');Element.hide('planner-msg')") do |f| %>
   <%= f.error_messages %>
 
   <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
+  </p>
+
+ <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description,:rows=>'10',:cols=>"60" %>
   </p>
 
   <p>
@@ -31,6 +36,7 @@
   <p>
     <%= f.submit "Update" %>
   </p>
+  <div id="planner-msg" style="background-color:#fff1A8;font-size:80%;font-weight:bold;width:300px;line-height:30px;text-align:center;display:none"></div><div><%= image_tag "icons/spinnergreen.gif",:width=>'32',:id=>'planner-spinner',:style=>"display:none" %></div>
 <% end %>
 
 <%= link_to 'Show', @planner %> |
